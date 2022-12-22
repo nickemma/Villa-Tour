@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Home from './pages/home/Home';
-import Login from './pages/login/login';
-import Register from './pages/register/register';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (

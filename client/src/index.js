@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import App from './App';
 import store from './redux/configureStore';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 const persistor = persistStore(store);
 
