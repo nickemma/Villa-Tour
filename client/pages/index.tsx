@@ -1,11 +1,6 @@
-import type { NextPage } from 'next';
-import Login from '../screen/login/Login';
-
-const Home: NextPage = () => {
+const Home: React.FC = () => {
   return (
-    <>
-      <h2>Welcome to Typescript</h2>
-    </>
+    <h1>Welcome Home</h1>
   );
 };
 
