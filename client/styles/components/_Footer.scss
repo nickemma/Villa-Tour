@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.footer {
+  margin-top: 10rem;
+
+  .credit {
+    text-align: center;
+    margin-top: 3rem;
+
+    p {
+      font-size: 1.5rem;
+      background-color: $bg-secondary;
+      color: $text-secondary;
+      font-weight: 400;
+
+      span {
+        font-style: italic;
+        color: $accent;
+        font-weight: bold;
+      }
+    }
+  }
+}
