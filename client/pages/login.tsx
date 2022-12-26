@@ -42,8 +42,8 @@ const Login = () => {
   }, []);
 
   return (
-    <section className="login_container">
-      <div className="login">
+    <section className="login_container form_container">
+      <div className="login form">
         <h2 className="title">Welcome Back</h2>
         <form onSubmit={handleSubmit}>
           <div>

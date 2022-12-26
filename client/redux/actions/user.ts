@@ -15,7 +15,7 @@ const login = (email: string, password: string) => async (dispatch: DispatchType
     }
     const { data } = await axios.post(
       `${BACKEND_URL}/signin`,
-      { email, password },
+      { email, password },  
       config
     );
 

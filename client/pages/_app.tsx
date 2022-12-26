@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import store from "../redux/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-import "../styles/index.scss";
+import "../scss/index.scss";
 import type { AppProps } from "next/app";
 
 import { ToastContainer } from 'react-toastify';
