@@ -1,19 +1,19 @@
-import Link from "next/link";
-import React from "react";
-import { useSelector } from "react-redux";
-import store, { storeType } from "../../redux/configureStore";
-import { useRouter } from "next/router";
-import { logout } from "../../redux/actions/user";
-import { toast } from "react-toastify";
+import Link from 'next/link';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import store, { storeType } from '../../redux/configureStore';
+import { useRouter } from 'next/router';
+import { logout } from '../../redux/actions/user';
+import { toast } from 'react-toastify';
 
 const data = [
   {
-    name: "Home",
-    route: "/",
+    name: 'Home',
+    route: '/',
   },
   {
-    name: "Add Tour",
-    route: `/add`,
+    name: 'Add Tour',
+    route: '/tours/create',
     protected: true,
   },
 ];
@@ -25,11 +25,11 @@ const Header = () => {
   const handleSession = () => {
     // redirect to login page
     if (!currentUser.user) {
-      router.push("/login");
+      router.push('/login');
       return;
     }
     store.dispatch(logout());
-    toast.success("Logged out successfully");
+    toast.success('Logged out successfully');
   };
 
   return (
@@ -45,7 +45,7 @@ const Header = () => {
                     ? link.route
                     : currentUser.user
                     ? link.route
-                    : "/login"
+                    : '/login'
                 }
               >
                 {link.name}
@@ -53,8 +53,13 @@ const Header = () => {
             </li>
           ))}
         </ul>
+        <div>
+          {currentUser.user && (
+            <h3>logged in as {currentUser.user.user.name}</h3>
+          )}
+        </div>
         <button onClick={handleSession}>
-          {currentUser.user ? "Log Out" : "Log In"}
+          {currentUser.user ? 'Log Out' : 'Log In'}
         </button>
       </nav>
     </header>

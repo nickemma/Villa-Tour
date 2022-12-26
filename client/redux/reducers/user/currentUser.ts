@@ -1,15 +1,23 @@
 import * as types from '../../constants/user';
 import { ActionType } from '../../types';
 
+interface User {
+  name: string;
+  email: string;
+  password: string;
+}
 type State = {
-  user: null | {}
-}
+  user: null | { user: User };
+};
 const initialState = {
-  user: null
-}
+  user: null,
+};
 
-const currentUserReducer = (state: State = initialState, action: ActionType): State => {
-  const { type, payload } =  action;
+const currentUserReducer = (
+  state: State = initialState,
+  action: ActionType
+): State => {
+  const { type, payload } = action;
   switch (type) {
     case types.USER_LOGIN_SUCCESS:
       return { user: payload };
@@ -20,6 +28,6 @@ const currentUserReducer = (state: State = initialState, action: ActionType): St
     default:
       return state;
   }
-}
+};
 
 export default currentUserReducer;

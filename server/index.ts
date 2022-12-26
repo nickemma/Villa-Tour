@@ -5,6 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import userRoutes from './routes/user';
+import tourRoutes from './routes/tour';
 
 mongoose.set('strictQuery', false);
 const app = express();
@@ -22,6 +23,7 @@ app.use(
   })
 );
 app.use('/', userRoutes);
+app.use('/tours', tourRoutes);
 
 const CONNECTION_URL = process.env.MONGO_URL || '';
 const port = 4000;
