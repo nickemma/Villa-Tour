@@ -16,6 +16,11 @@ const data = [
     route: '/tours/create',
     protected: true,
   },
+  {
+    name: 'Dashboard',
+    route: '/dashboard',
+    protected: true,
+  },
 ];
 
 const Header = () => {
