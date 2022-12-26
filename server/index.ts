@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -21,8 +23,7 @@ app.use(
 );
 app.use('/', userRoutes);
 
-const CONNECTION_URL =
-  'mongodb+srv://techieemma:Nicktrent1@cluster0.vuiwyfj.mongodb.net/?retryWrites=true&w=majority';
+const CONNECTION_URL = process.env.MONGO_URL || '';
 const port = 4000;
 
 mongoose

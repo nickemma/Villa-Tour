@@ -1,6 +1,10 @@
+import Layout from "../components/main/Layout";
+
 const Home: React.FC = () => {
   return (
-    <h1>Welcome Home</h1>
+    <Layout>
+      <h1>Welcome Home</h1>
+    </Layout>
   );
 };
 

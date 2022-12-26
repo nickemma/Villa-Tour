@@ -26,8 +26,8 @@ const login = (email: string, password: string) => async (dispatch: DispatchType
   } catch (error: any) {
     dispatch({
       type: types.USER_LOGIN_FAILURE,
-      payload: error.response?.data.error
-        ? error.response.data.error
+      payload: error.response?.data
+        ? error.response.data
         : error.error,
     })
   }
@@ -40,7 +40,7 @@ const register = (formData: any) => async (dispatch: DispatchType) => {
     });
     const config: AxiosRequestConfig<any> = {
       headers: {
-        "Content-Type": "multipart/form/data"
+        "Content-Type": "application/json"
       }
     };
     const { data } = await axios.post(
@@ -56,8 +56,8 @@ const register = (formData: any) => async (dispatch: DispatchType) => {
   } catch (error: any) {
     dispatch({
       type: types.USER_REGISTER_FAILURE,
-      payload: error.response?.data.error
-        ? error.response.data.error
+      payload: error.response?.data
+        ? error.response.data
         : error.error,
     })
   }

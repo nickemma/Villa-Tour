@@ -12,8 +12,10 @@ export const register = async (req: any, res: any) => {
     const userExists = await User.findOne({ email });
     if (userExists)
       return res.status(400).json({ message: 'User already exists' });
-
-    const hashedPassword = await bcrypt.hash(password, 12);
+    
+    const salt = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash(password, salt);
+  
     const result = await User.create({
       name: `${firstName} ${lastName}`,
       email,
@@ -27,7 +29,7 @@ export const register = async (req: any, res: any) => {
       expiresIn: '1h'
     });
 
-    res.status(200).json({ result, token }) 
+    res.status(200).json({ user: result, token }) 
   } catch (err) {
     res.status(500).json({ message: 'Something went wrong.' })
     console.log(err);

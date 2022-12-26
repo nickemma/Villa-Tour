@@ -3,13 +3,11 @@ import { ActionType } from '../../types';
 
 type State = {
   loading: boolean,
-  error: null | {},
-  user: null | {}
+  error: null | { message: string },
 }
 const initialState = {
   loading: false,
   error: null,
-  user: null
 }
 
 const loginReducer = (state: State = initialState, action: ActionType): State => {
@@ -18,7 +16,7 @@ const loginReducer = (state: State = initialState, action: ActionType): State =>
     case types.USER_LOGIN_REQUEST:
       return { ...state, loading: true };
     case types.USER_LOGIN_SUCCESS:
-      return { ...state, loading: false, user: payload };
+      return { error: null, loading: false };
     case types.USER_LOGIN_FAILURE:
       return { ...state, loading: false, error: payload };
     case types.USER_LOGOUT:
