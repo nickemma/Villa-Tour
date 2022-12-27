@@ -45,13 +45,7 @@ const Header = () => {
           {data.map((link, index) => (
             <li key={index}>
               <Link
-                href={
-                  !link.protected
-                    ? link.route
-                    : currentUser.user
-                    ? link.route
-                    : '/login'
-                }
+                href={link.route}
               >
                 {link.name}
               </Link>

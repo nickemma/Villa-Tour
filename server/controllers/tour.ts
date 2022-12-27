@@ -1,18 +1,22 @@
 import Tour from '../models/tour';
+import User from "../models/user";
 
 export const createTour = async (req: any, res: any) => {
   const tour = req.body;
+
+  const creator = await User.findById(req.user);
+
   const newTour = new Tour({
     ...tour,
-    creator: req.userId,
+    creator: creator?.name,
     createdAt: new Date().toISOString(),
   });
 
   try {
     await newTour.save();
     res.status(201).json(newTour);
-  } catch (err) {
-    res.status(400).json({ message: 'Bad request' });
+  } catch (err: any) {
+    res.status(409).json({ message: err.message });
   }
 };
 

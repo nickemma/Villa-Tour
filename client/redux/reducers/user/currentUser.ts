@@ -7,7 +7,7 @@ interface User {
   password: string;
 }
 type State = {
-  user: null | { user: User };
+  user: null | { user: User, token: string };
 };
 const initialState = {
   user: null,

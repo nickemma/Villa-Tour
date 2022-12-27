@@ -6,14 +6,12 @@ type State = {
   error: null | { message: string };
   tours: any[];
   tour: {} | null;
-  userTours: any[];
 };
 const initialState = {
   loading: false,
   error: null,
   tours: [],
   tour: {} || null,
-  userTours: [],
 };
 
 const tourReducer = (
@@ -22,11 +20,17 @@ const tourReducer = (
 ): State => {
   const { type, payload } = action;
   switch (type) {
-    case types.TOUR_LIST_REQUEST:
+    case types.TOUR_CREATE_REQUEST:
       return { ...state, loading: true };
-    case types.TOUR_LIST_SUCCESS:
-      return { ...state, loading: false, tours: payload };
-    case types.TOUR_LIST_FAILURE:
+    case types.TOUR_CREATE_SUCCESS:
+      return { ...state, loading: false, error: null, tour: payload };
+    case types.TOUR_CREATE_FAILURE:
+      return { ...state, loading: false, error: payload };
+    case types.GET_TOURS_REQUEST:
+      return { ...state, loading: true };
+    case types.GET_TOURS_SUCCESS:
+      return { ...state, loading: false, error: null, tours: payload };
+    case types.GET_TOURS_FAILURE:
       return { ...state, loading: false, error: payload };
     default:
       return state;

@@ -15,34 +15,39 @@ const create = () => {
     tags: [] as string[],
     imageFile: '' as string,
   });
-
-  const { title, description, tags } = tourData;
-
+  const [pageLoaded, setPageLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
   const currentUser = useSelector((store: storeType) => store.currentUser);
   const createTourStore = useSelector((store: storeType) => store.tourData);
   const router = useRouter();
+  const { title, description, tags } = tourData;
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    const tourApi = { title, description, tags, imageFile: tourData.imageFile };
-    store.dispatch(createTour(tourApi));
+    const formData = { title, description, tags, imageFile: tourData.imageFile };
+    store.dispatch(createTour(formData));
   };
 
   useEffect(() => {
-    if (currentUser.user) {
-      router.replace('/tours/create');
+    if (pageLoaded) {
       if (createTourStore.tour) {
-        toast.success('Tour Created Successfully');
+        toast.success('Tour created successfully');
+        router.push('/');
+      }
+
+      if (createTourStore.error) {
+        toast.error(createTourStore.error.message);
       }
     }
+    setLoading(createTourStore.loading);
   }, [createTourStore]);
 
   useEffect(() => {
-    if (createTourStore.error && !createTourStore.loading) {
-      toast.error(createTourStore.error.message);
-    }
-  }, [createTourStore]);
+    if (!currentUser.user) router.replace('/login');
+    setPageLoaded(true);
+  }, [])
 
   return (
     <Layout>
