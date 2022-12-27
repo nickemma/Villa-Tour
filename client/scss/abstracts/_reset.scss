@@ -1,15 +1,14 @@
 @use './colors' as *;
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   outline: none;
   text-decoration: none;
   list-style: none;
-  transition: all 0.3s ease-in-out;
 }
 
 html {

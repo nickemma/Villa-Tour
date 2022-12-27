@@ -47,6 +47,14 @@
       margin-bottom: 0.5rem;
     }
 
+    input[type="file"] {
+      padding: 0.5rem;
+      border: 1px solid $line;
+      border-radius: 0.5rem;
+      display: flex;
+      cursor: pointer;
+    }
+
     .form_input {
       padding: 0.7rem;
       border: 1px solid $line;
@@ -65,15 +73,19 @@
 
     .btn_submit {
       padding: 0.7rem;
-      border: 1px solid $line;
+      border: none;
       border-radius: 0.25rem;
       background-color: $accent;
       color: $bg-secondary;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
       width: 100%;
       margin: 1rem 0;
+      transition: background-color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .btn_submit:disabled {
+      opacity: 0.75;
     }
 
     .btn_submit:hover {

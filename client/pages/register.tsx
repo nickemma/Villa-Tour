@@ -90,6 +90,16 @@ const Register = () => {
               required
             />
           </div>
+          <div className="image">
+            <label htmlFor="avatar" className='form_label'>Profile Image</label>
+            <FileBase
+              id="avatar"
+              type="file"
+              multiple={false}
+              value={imageFile}
+              onDone={({ base64 }: any) => setImageFile(base64 ? base64 : imageFile)}
+            />
+          </div>
           <div>
             <label htmlFor="email" className="form_label">
               Email Address
@@ -122,14 +132,6 @@ const Register = () => {
                 setPassword(e.target.value);
               }}
               required
-            />
-          </div>
-          <div className="image">
-            <FileBase
-              type="file"
-              multiple={false}
-              value={imageFile}
-              onDone={({ base64 }) => setImageFile(base64 ? base64 : imageFile)}
             />
           </div>
           <button type="submit" className="btn_submit" disabled={loading}>

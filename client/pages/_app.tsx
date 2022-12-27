@@ -13,7 +13,7 @@ const persistor = persistStore(store);
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="bottom-right" />
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Component {...pageProps} />

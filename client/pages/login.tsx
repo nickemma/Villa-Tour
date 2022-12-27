@@ -76,8 +76,8 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn_submit">
-            Sign in
+          <button type="submit" className="btn_submit" disabled={loading}>
+            {loading ? 'Signing In...' : 'Sign In'}
           </button>
           <p className="text">
             Don’t have an account yet? <Link href="/register">Sign up</Link>

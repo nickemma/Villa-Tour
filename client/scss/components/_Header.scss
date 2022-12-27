@@ -1,44 +1,138 @@
 @use '../abstracts' as *;
 
 .header {
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  padding: 8px 3%;
+  padding: 1rem 1.5rem;
   background-color: $bg-secondary;
-  z-index: 100;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25rem 0.5rem $shadow;
 
-  .navbar {
+  .logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    gap: 0.25rem;
+
+    & :last-child {
+      color: $accent;
+    }
+  }
+
+  nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 500;
+    .nav_links *, .nav_auth * {
       color: $text-primary;
-      margin-right: auto;
+    }
+    
+    .nav_links {
+      margin-left: auto;
+      display: flex;
+      gap: 0.75rem;
+      font-weight: 300;
+
+      li:is(.active, :hover) a {
+        color: $accent;
+      }
     }
 
-    .nav_links {
+
+    .nav_auth {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      margin-left: 2rem;
+      gap: 0.35rem;
+      height: 2.25rem;
+    
+      li a {
+        transition: color 250ms ease;
+      }
 
-      .nav_item {
-        a {
-          font-size: 1.1rem;
-          font-weight: 500;
-          color: $text-primary;
-          text-decoration: none;
-          transition: all 0.2s ease-in-out;
+      li:hover a {
+        color: $accent;
+      }
+    }
+
+    .nav_dropdown {
+      display: flex;
+      align-items: center;
+      margin-left: 2rem;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      background: none;
+
+      .avatar {
+        aspect-ratio: 1;
+        width: 2.25rem;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.05rem $accent;
+        overflow: hidden;
+        transition: box-shadow 0.15s ease;
+        
+        &:hover {
+          box-shadow: 0 0 0 0.075rem $accent;
+        }
+        
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      
+      .nav_dropdown__toggle {
+        font-size: 1.5rem;
+        font-weight: 300;
+        transition: transform 0.25s ease;
+      }
+      
+      .nav_dropdown__container {
+        position: absolute;
+        background-color: $bg-secondary;
+        box-shadow: 0 0 0.5rem $shadow;
+        right: 0;
+        top: 75%;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        width: 15rem;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.25s ease 0.5s, top 0.25s ease 0.5s, visibility 0.15s 0.5s;
+
+        button {
+          padding: 0.7rem;
+          border: none;
+          border-radius: 0.25rem;
+          background-color: $accent;
+          color: $bg-secondary;
+          font-weight: bold;
+          cursor: pointer;
+          width: 100%;
+          transition: background-color 0.25s ease;
 
           &:hover {
-            color: $accent;
+            background-color: lighten($color: $accent, $amount: 5%);
           }
+        }
+      }
+
+      &:is(:hover, :focus) {
+        .nav_dropdown__toggle {
+          transform: rotate(180deg);
+        }
+
+        .nav_dropdown__container {
+          cursor: default;
+          transition: opacity 0.25s ease, top 0.25s ease;
+          visibility: visible;
+          opacity: 1;
+          top: calc(100% + 0.5rem);
+        }
+      }
+
+      &:hover {
+        .nav_dropdown__container {
+          transition: opacity 0.25s ease 0.5s, top 0.25s ease 0.5s;
         }
       }
     }
