@@ -1,25 +1,55 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import ChipInput from 'material-ui-chip-input';
 import Layout from '../../components/main/Layout';
+import store, { storeType } from '../../redux/configureStore';
+import { createTour } from '../../redux/actions/tour';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import FileBase from 'react-file-base64';
 
-const initialState = {
-  title: '',
-  description: '',
-  tags: [] as string[],
-  imageFile: '' as string,
-};
-
 const create = () => {
-  const [tourData, setTourData] = useState(initialState);
+  const [tourData, setTourData] = useState({
+    title: '',
+    description: '',
+    tags: [] as string[],
+    imageFile: '' as string,
+  });
+
   const { title, description, tags } = tourData;
+
+  const currentUser = useSelector((store: storeType) => store.currentUser);
+  const createTourStore = useSelector((store: storeType) => store.tourData);
+  const router = useRouter();
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    const tourApi = { title, description, tags, imageFile: tourData.imageFile };
+    store.dispatch(createTour(tourApi));
+  };
+
+  useEffect(() => {
+    if (currentUser.user) {
+      router.replace('/tours/create');
+      if (createTourStore.tour) {
+        toast.success('Tour Created Successfully');
+      }
+    }
+  }, [createTourStore]);
+
+  useEffect(() => {
+    if (createTourStore.error && !createTourStore.loading) {
+      toast.error(createTourStore.error.message);
+    }
+  }, [createTourStore]);
 
   return (
     <Layout>
       <section className="login_container form_container">
         <div className="login form">
           <h2 className="title">Create Tour</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <input
                 type="text"
