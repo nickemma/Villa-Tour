@@ -28,3 +28,13 @@ export const getTours = async (req: any, res: any) => {
     res.status(404).json({ message: 'Something went wrong' });
   }
 };
+
+export const getTour = async (req: any, res: any) => {
+  const { id } = req.params;
+  try {
+    const tour = await Tour.findById(id);
+    res.status(200).json(tour);
+  } catch (err) {
+    res.status(404).json({ message: 'Something went wrong' });
+  }
+};
