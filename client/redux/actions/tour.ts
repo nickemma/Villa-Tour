@@ -5,7 +5,8 @@ import { DispatchType } from '../types';
 import { storeType } from '../configureStore';
 
 const createTour =
-  (formData: any) => async (dispatch: DispatchType, getState: () => storeType) => {
+  (formData: any) =>
+  async (dispatch: DispatchType, getState: () => storeType) => {
     try {
       dispatch({
         type: types.TOUR_CREATE_REQUEST,
@@ -40,7 +41,6 @@ const createTour =
 const getTours = () => async (dispatch: DispatchType) => {
   try {
     dispatch({ type: types.GET_TOURS_REQUEST });
-
     const { data } = await axios.get(`${BACKEND_URL}/tours`);
 
     dispatch({ type: types.GET_TOURS_SUCCESS, payload: data });
@@ -52,4 +52,18 @@ const getTours = () => async (dispatch: DispatchType) => {
   }
 };
 
-export { createTour, getTours };
+const getTour = (id: string) => async (dispatch: DispatchType) => {
+  try {
+    dispatch({ type: types.GET_TOUR_REQUEST });
+    const { data } = await axios.get(`${BACKEND_URL}/tour/${id}`);
+
+    dispatch({ type: types.GET_TOUR_SUCCESS, payload: data });
+  } catch (error: any) {
+    dispatch({
+      type: types.GET_TOUR_FAILURE,
+      payload: error.response?.data ? error.response.data : error.error,
+    });
+  }
+};
+
+export { createTour, getTours, getTour };

@@ -14,9 +14,9 @@ const Home: React.FC = () => {
   return (
     <Layout>
       <div>{tours.length === 0 && <h1>No tours found</h1>}</div>
-      <div>
+      <section className="cards">
         {tours && tours.map((tour, index) => <Card key={index} {...tour} />)}
-      </div>
+      </section>
     </Layout>
   );
 };

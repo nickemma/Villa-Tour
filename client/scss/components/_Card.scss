@@ -1,0 +1,70 @@
+@use '../abstracts' as *;
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-gap: 1rem;
+  padding: 3rem 9%;
+}
+
+.card {
+  background-color: $bg-secondary;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0.25rem 0.5rem $shadow;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0.5rem 1rem $shadow;
+  }
+
+  .card_image {
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &:hover {
+        transform: scale(1.2);
+        transition: 400ms ease-in-out;
+      }
+    }
+  }
+  .card_content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .card_tags {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bolder;
+      color: $accent;
+      margin-bottom: 1rem;
+    }
+
+    .card_title {
+      margin-bottom: 1rem;
+    }
+
+    .card_author {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: $bg-secondary;
+      position: absolute;
+      top: 10px;
+      left: 0.5rem;
+    }
+  }
+}
