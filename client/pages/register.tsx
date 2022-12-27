@@ -5,6 +5,7 @@ import { register } from '../redux/actions/user';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import FileBase from 'react-file-base64';
 
 const Register = () => {
   const [firstName, setFirstName] = useState<string>('');
@@ -13,6 +14,7 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [pageLoaded, setPageLoaded] = useState<boolean>(false);
+  const [imageFile, setImageFile] = useState<string>('');
 
   const currentUser = useSelector((store: storeType) => store.currentUser);
   const registerStore = useSelector((store: storeType) => store.register);
@@ -21,7 +23,13 @@ const Register = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    const formData = { firstName, lastName, email, password };
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      password,
+      avatar: imageFile,
+    };
     store.dispatch(register(formData));
   };
 
@@ -60,7 +68,9 @@ const Register = () => {
               className="form_input"
               placeholder="First name"
               value={firstName}
-              onChange={(e) => {setFirstName(e.target.value)}}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
               required
             />
           </div>
@@ -74,7 +84,9 @@ const Register = () => {
               className="form_input"
               placeholder="Last name"
               value={lastName}
-              onChange={(e) => {setLastName(e.target.value)}}
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
               required
             />
           </div>
@@ -89,7 +101,9 @@ const Register = () => {
               className="form_input"
               placeholder="Your email"
               value={email}
-              onChange={(e) => {setEmail(e.target.value)}}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               required
             />
           </div>
@@ -104,8 +118,18 @@ const Register = () => {
               placeholder="Your password"
               className="form_input"
               value={password}
-              onChange={(e) => {setPassword(e.target.value)}}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               required
+            />
+          </div>
+          <div className="image">
+            <FileBase
+              type="file"
+              multiple={false}
+              value={imageFile}
+              onDone={({ base64 }) => setImageFile(base64 ? base64 : imageFile)}
             />
           </div>
           <button type="submit" className="btn_submit" disabled={loading}>

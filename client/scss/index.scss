@@ -1,4 +1,7 @@
 @use './abstracts/index' as *;
+@use './components/App';
 @use './components/Form';
+@use './components/Card';
 @use './components/Create';
+@use './components/Header';
 @use './components/Footer';

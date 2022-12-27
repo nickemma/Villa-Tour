@@ -1,5 +1,5 @@
 import Tour from '../models/tour';
-import User from "../models/user";
+import User from '../models/user';
 
 export const createTour = async (req: any, res: any) => {
   const tour = req.body;
@@ -23,7 +23,7 @@ export const createTour = async (req: any, res: any) => {
 export const getTours = async (req: any, res: any) => {
   try {
     const tours = await Tour.find();
-    res.status(200).json({ tours });
+    res.status(200).json(tours);
   } catch (err) {
     res.status(404).json({ message: 'Something went wrong' });
   }

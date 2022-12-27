@@ -43,7 +43,7 @@
 
     .form_label {
       font-size: 0.9rem;
-      font-weight: normal;
+      font-weight: 500;
       margin-bottom: 0.5rem;
     }
 
@@ -51,7 +51,6 @@
       padding: 0.7rem;
       border: 1px solid $line;
       border-radius: 0.5rem;
-      background-color: $bg-tertiary;
       color: $text-primary;
     }
 
@@ -61,7 +60,7 @@
 
     .form_input::placeholder {
       color: $text-secondary;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .btn_submit {
@@ -69,7 +68,7 @@
       border: 1px solid $line;
       border-radius: 0.25rem;
       background-color: $accent;
-      color: $text-primary;
+      color: $bg-secondary;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -79,12 +78,12 @@
 
     .btn_submit:hover {
       background-color: lighten($accent, 5%);
-      color: $text-primary;
     }
 
     .text {
       font-size: 0.8rem;
       margin-top: 1rem;
+      font-weight: 500;
 
       a {
         color: $accent;

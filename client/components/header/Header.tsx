@@ -5,6 +5,7 @@ import store, { storeType } from '../../redux/configureStore';
 import { useRouter } from 'next/router';
 import { logout } from '../../redux/actions/user';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 
 const data = [
   {
@@ -28,7 +29,6 @@ const Header = () => {
   const router = useRouter();
 
   const handleSession = () => {
-    // redirect to login page
     if (!currentUser.user) {
       router.push('/login');
       return;
@@ -38,23 +38,24 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <nav>
+    <header className="header">
+      <nav className="navbar">
         <div className="logo">Villa Tour</div>
         <ul className="nav_links">
           {data.map((link, index) => (
-            <li key={index}>
-              <Link
-                href={link.route}
-              >
-                {link.name}
-              </Link>
+            <li key={index} className="nav_item">
+              <Link href={link.route}>{link.name}</Link>
             </li>
           ))}
         </ul>
         <div>
           {currentUser.user && (
-            <h3>logged in as {currentUser.user.user.name}</h3>
+            <Image
+              src={currentUser.user.user.avatar}
+              width={50}
+              height={50}
+              alt="avatar"
+            />
           )}
         </div>
         <button onClick={handleSession}>

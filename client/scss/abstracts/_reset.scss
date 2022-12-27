@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@use './colors' as *;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   outline: none;
   text-decoration: none;
+  list-style: none;
   transition: all 0.3s ease-in-out;
 }
 
@@ -16,5 +18,5 @@ html {
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: $bg-primary;
 }

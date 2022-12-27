@@ -6,7 +6,7 @@ import User from '../models/user';
 const secret = process.env.JWT_SECRET || '';
 
 export const register = async (req: any, res: any) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, avatar } = req.body;
 
   try {
     const userExists = await User.findOne({ email });
@@ -20,17 +20,18 @@ export const register = async (req: any, res: any) => {
       name: `${firstName} ${lastName}`,
       email,
       password: hashedPassword,
+      avatar,
     });
 
-    res.status(200).json({ 
+    res.status(200).json({
       user: result,
-      token: generateToken(result._id) 
+      token: generateToken(result._id),
     });
   } catch (err) {
-    res.status(500).json({ message: 'Something went wrong.' })
+    res.status(500).json({ message: 'Something went wrong.' });
     console.log(err);
-  };
-}
+  }
+};
 
 export const signin = async (req: any, res: any) => {
   const { email, password } = req.body;
@@ -41,24 +42,27 @@ export const signin = async (req: any, res: any) => {
     if (!userExists)
       return res.status(404).json({ message: 'User does not exist' });
 
-    const isPasswordCorrect = await bcrypt.compare(password, userExists.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      userExists.password
+    );
 
     if (!isPasswordCorrect)
       return res.status(400).json({ message: 'Invalid Credentials' });
 
-    res.status(200).json({ 
+    res.status(200).json({
       user: userExists,
-      token: generateToken(userExists._id) 
+      token: generateToken(userExists._id),
     });
   } catch (err) {
-    res.status(500).json({ message: 'Something went wrong.' })
+    res.status(500).json({ message: 'Something went wrong.' });
     console.log(err);
   }
-}
+};
 
 const generateToken = (id: any) => {
   const token = jwt.sign({ id }, secret, {
-    expiresIn: '30d'
+    expiresIn: '30d',
   });
   return token;
-}
+};

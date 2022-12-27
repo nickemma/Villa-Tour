@@ -5,9 +5,10 @@ interface User {
   name: string;
   email: string;
   password: string;
+  avatar: string;
 }
 type State = {
-  user: null | { user: User, token: string };
+  user: null | { user: User; token: string };
 };
 const initialState = {
   user: null,
