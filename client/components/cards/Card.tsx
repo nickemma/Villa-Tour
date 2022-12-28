@@ -40,7 +40,7 @@ const Card: React.FC<Props> = ({
         </div>
         <h3 className="card_title">{title}</h3>
         <p className="card_text">
-          {excerpt(description)} <Link href={`/tour/${_id}`}>Read more</Link>
+          {excerpt(description)} <Link href={`/tours/${_id}`}>Read more</Link>
         </p>
       </div>
     </div>
