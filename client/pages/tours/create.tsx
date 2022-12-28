@@ -31,7 +31,7 @@ const create = () => {
 
   useEffect(() => {
     if (pageLoaded) {
-      if (createTourStore.tour) {
+      if (!createTourStore.error && !createTourStore.loading) {
         toast.success("Tour created successfully");
         router.push("/");
       }

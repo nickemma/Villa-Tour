@@ -67,7 +67,7 @@ const getTour = (id: any) => async (dispatch: DispatchType) => {
 };
 
 const getToursByUser =
-  (userId: any) =>
+  () =>
   async (dispatch: DispatchType, getState: () => storeType) => {
     try {
       dispatch({ type: types.GET_USER_TOURS_REQUEST });
@@ -80,7 +80,7 @@ const getToursByUser =
         },
       };
       const { data } = await axios.get(
-        `${BACKEND_URL}/tours/userTours/${userId}`,
+        `${BACKEND_URL}/tours/me`,
         config
       );
       dispatch({ type: types.GET_USER_TOURS_SUCCESS, payload: data });
