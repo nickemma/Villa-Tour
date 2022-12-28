@@ -58,7 +58,7 @@ const Header = () => {
           ))}
         </ul>
         {currentUser.user ? (
-          <button className="nav_dropdown">
+          <div className="nav_dropdown">
             <div className="avatar">
               <Image
                 src={currentUser.user.user.avatar}
@@ -71,7 +71,7 @@ const Header = () => {
             <div className="nav_dropdown__container">
               <button onClick={handleSession}>Logout</button>
             </div>
-          </button>
+          </div>
         ) : (
           <ul className="nav_auth">
             <li>

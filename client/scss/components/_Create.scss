@@ -1,5 +1,9 @@
 @use '../abstracts' as *;
 
+.add_tour_container {
+  height: fit-content;
+}
+
 .text_input {
   width: 100%;
   height: 13rem;

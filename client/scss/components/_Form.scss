@@ -1,8 +1,8 @@
 @use '../abstracts' as *;
 
 .form_container {
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -47,23 +47,46 @@
       margin-bottom: 0.5rem;
     }
 
-    input[type="file"] {
-      padding: 0.5rem;
-      border: 1px solid $line;
-      border-radius: 0.5rem;
-      display: flex;
-      cursor: pointer;
+    .MuiOutlinedInput-adornedStart {
+      padding-top: 0.75rem !important;
     }
 
-    .form_input {
+    .MuiInputBase-root {
+      box-shadow: 0 0 0 1px $line;
+      border-radius: 0.25rem;
+    }
+
+    .MuiInputBase-root * {
+      outline: none !important;
+      border: none !important;
+    }
+
+    .form_input, textarea, input[type="file"] {
       padding: 0.7rem;
-      border: 1px solid $line;
-      border-radius: 0.5rem;
+      box-shadow: 0 0 0 1px $line;
+      border: none;
+      border-radius: 0.25rem;
       color: $text-primary;
+      font-size: 0.9rem;
+
+      transition: box-shadow 0.25s ease;
     }
 
-    .form_input:focus {
-      border: 1px solid $accent;
+    :is(.form_input, textarea, input[type="file"])::placeholder {
+      color: transparentize($color: $text-secondary, $amount: 0.5);
+    }
+
+    .MuiChip-deleteIcon {
+      fill: $accent;
+    }
+
+    :is(.form_input, textarea, .MuiInputBase-root, input[type="file"]):hover {
+      box-shadow: 0 0 0 1px transparentize($color:  $accent, $amount: 0.5);
+
+    }
+
+    :is(.form_input, textarea):focus {
+      box-shadow: 0 0 0 1px $accent;
     }
 
     .form_input::placeholder {

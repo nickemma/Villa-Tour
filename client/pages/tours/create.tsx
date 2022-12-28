@@ -1,40 +1,39 @@
-import React, { FormEvent, useState, useEffect } from 'react';
-import ChipInput from 'material-ui-chip-input';
-import Layout from '../../components/main/Layout';
-import store, { storeType } from '../../redux/configureStore';
-import { createTour } from '../../redux/actions/tour';
-import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
-import FileBase from 'react-file-base64';
+import React, { FormEvent, useState, useEffect } from "react";
+import ChipInput from "material-ui-chip-input";
+import Layout from "../../components/main/Layout";
+import store, { storeType } from "../../redux/configureStore";
+import { createTour } from "../../redux/actions/tour";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import FileBase from "react-file-base64";
 
 const create = () => {
-  const [tourData, setTourData] = useState({
-    title: '',
-    description: '',
-    tags: [] as string[],
-    imageFile: '' as string,
-  });
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [imageFile, setImageFile] = useState<string>("");
+
   const [pageLoaded, setPageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+
   const currentUser = useSelector((store: storeType) => store.currentUser);
   const createTourStore = useSelector((store: storeType) => store.tourData);
   const router = useRouter();
-  const { title, description, tags } = tourData;
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+    console.log('submittting...')
 
-    const formData = { title, description, tags, imageFile: tourData.imageFile };
+    const formData = { title, description, tags, imageFile };
     store.dispatch(createTour(formData));
   };
 
   useEffect(() => {
     if (pageLoaded) {
       if (createTourStore.tour) {
-        toast.success('Tour created successfully');
-        router.push('/');
+        toast.success("Tour created successfully");
+        router.push("/");
       }
 
       if (createTourStore.error) {
@@ -42,17 +41,17 @@ const create = () => {
       }
     }
     setLoading(createTourStore.loading);
-  }, [createTourStore]);
+  }, [createTourStore])
 
   useEffect(() => {
-    if (!currentUser.user) router.replace('/login');
+    if (!currentUser.user) router.replace("/login");
     setPageLoaded(true);
-  }, [])
+  }, []);
 
   return (
     <Layout>
-      <section className="login_container form_container">
-        <div className="login form">
+      <section className="add_tour_container form_container">
+        <div className="add_tour form">
           <h2 className="title">Create Tour</h2>
           <form onSubmit={handleSubmit}>
             <div>
@@ -63,9 +62,7 @@ const create = () => {
                 value={title}
                 className="form_input"
                 placeholder="Title"
-                onChange={(e) =>
-                  setTourData({ ...tourData, title: e.target.value })
-                }
+                onChange={(e) => setTitle(e.target.value)}
                 required
               />
             </div>
@@ -76,27 +73,22 @@ const create = () => {
                 className="text_input"
                 placeholder="Description"
                 value={description}
-                onChange={(e) =>
-                  setTourData({ ...tourData, description: e.target.value })
-                }
+                onChange={(e) => setDescription(e.target.value)}
                 required
               />
             </div>
             <div>
               <ChipInput
-                name="tags"
                 id="tags"
                 placeholder="enter tags"
                 fullWidth
                 variant="outlined"
                 value={tags}
-                onAdd={(chip) =>
-                  setTourData({ ...tourData, tags: [...tags, chip] })
-                }
+                onAdd={(e) => setTags((prevTags) => [...prevTags, e])}
                 onDelete={(index) => {
                   const newTags = [...tags];
                   newTags.splice(index, 1);
-                  setTourData({ ...tourData, tags: newTags });
+                  setTags(newTags);
                 }}
               />
             </div>
@@ -104,13 +96,11 @@ const create = () => {
               <FileBase
                 type="file"
                 multiple={false}
-                onDone={({ base64 }) =>
-                  setTourData({ ...tourData, imageFile: base64 })
-                }
+                onDone={({ base64 }: any) => setImageFile(base64)}
               />
             </div>
-            <button type="submit" className="btn_submit">
-              Add Tour
+            <button type="submit" className="btn_submit" disabled={loading}>
+              {loading ? "Adding Tour..." : "Add Tour"}
             </button>
           </form>
         </div>
