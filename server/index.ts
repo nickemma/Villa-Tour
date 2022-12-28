@@ -32,7 +32,7 @@ mongoose
   .connect(CONNECTION_URL)
   .then(() => {
     app.listen(port, () => {
-      console.log(`Server is running at ${port}`);
+      console.log(`Server is running at http://localhost:${port}`);
     });
   })
   .catch((err) => {

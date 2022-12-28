@@ -3,14 +3,18 @@ import Layout from '../components/main/Layout';
 import store, { storeType } from '../redux/configureStore';
 import { getToursByUser } from '../redux/actions/tour';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const dashboard = () => {
   const currentUser = useSelector((store: storeType) => store.currentUser);
-  const getToursByUser = useSelector(
-    (store: storeType) => store.tourData.tours
-  );
-  const userId = currentUser?.user?.token;
-  console.log(userId, getToursByUser);
+
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (!currentUser.user) {
+      router.replace('/login');
+    };
+  }, [currentUser]);
 
   // useEffect(()=> {
   //   if(userId){
@@ -18,7 +22,11 @@ const dashboard = () => {
   //   }
   // },[userId])
 
-  return <h2>hghg</h2>;
+  return (
+    <Layout>
+      <h2>hghg</h2>
+    </Layout>
+  );
 };
 
 export default dashboard;

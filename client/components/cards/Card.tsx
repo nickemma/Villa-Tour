@@ -1,21 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-interface Props {
-  imageFile: string;
-  description: string;
-  title: string;
-  tags: string[];
-  creator: string;
-  _id: string;
-}
+import { Tour } from '../../redux/reducers/tours/tour';
 
-const Card: React.FC<Props> = ({
+const Card: React.FC<Tour> = ({
   imageFile,
   description,
   title,
   tags,
   creator,
+  creatorName,
   _id,
 }) => {
   const excerpt = (text: string) => {
@@ -30,7 +24,7 @@ const Card: React.FC<Props> = ({
         <img src={imageFile} alt="image" />
       </div>
       <div className="card_content">
-        <h3 className="card_author">{creator}</h3>
+        <h3 className="card_author">{creatorName}</h3>
         <div className="card_tags">
           {tags.map((tag, index) => (
             <span key={index} className="card_tag">

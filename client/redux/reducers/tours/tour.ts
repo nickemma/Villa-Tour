@@ -1,17 +1,30 @@
 import * as types from '../../constants/tour';
 import { ActionType } from '../../types';
 
+export interface Tour {
+  _id?: any,
+  title: string,
+  description: string,
+  name: string,
+  creator: string,
+  creatorName: string,
+  tags: string[],
+  imageFile: string,
+  createdAt: string,
+  likeCount: number,
+}
+
 type State = {
   loading: boolean;
   error: null | { message: string };
-  tours: any[];
-  tour: {} | null;
+  tours: Tour[];
+  tour: Tour | null;
 };
 const initialState = {
   loading: false,
   error: null,
   tours: [],
-  tour: {} || null,
+  tour: null,
 };
 
 const tourReducer = (
