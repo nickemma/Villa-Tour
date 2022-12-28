@@ -38,6 +38,12 @@ const tourReducer = (
       return { ...state, loading: false, error: null, tour: payload };
     case types.GET_TOUR_FAILURE:
       return { ...state, loading: false, error: payload };
+    case types.GET_USER_TOURS_REQUEST:
+      return { ...state, loading: true };
+    case types.GET_USER_TOURS_SUCCESS:
+      return { ...state, loading: false, error: null, tours: payload };
+    case types.GET_USER_TOURS_FAILURE:
+      return { ...state, loading: false, error: payload };
     default:
       return state;
   }

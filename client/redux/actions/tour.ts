@@ -52,10 +52,10 @@ const getTours = () => async (dispatch: DispatchType) => {
   }
 };
 
-const getTour = (id: string) => async (dispatch: DispatchType) => {
+const getTour = (id: any) => async (dispatch: DispatchType) => {
   try {
     dispatch({ type: types.GET_TOUR_REQUEST });
-    const { data } = await axios.get(`${BACKEND_URL}/tour/${id}`);
+    const { data } = await axios.get(`${BACKEND_URL}/tours/${id}`);
 
     dispatch({ type: types.GET_TOUR_SUCCESS, payload: data });
   } catch (error: any) {
@@ -66,4 +66,30 @@ const getTour = (id: string) => async (dispatch: DispatchType) => {
   }
 };
 
-export { createTour, getTours, getTour };
+const getToursByUser =
+  (userId: any) =>
+  async (dispatch: DispatchType, getState: () => storeType) => {
+    try {
+      dispatch({ type: types.GET_USER_TOURS_REQUEST });
+
+      const currentUser = getState().currentUser;
+      const config: AxiosRequestConfig<any> = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${currentUser.user?.token}`,
+        },
+      };
+      const { data } = await axios.get(
+        `${BACKEND_URL}/tours/userTours/${userId}`,
+        config
+      );
+      dispatch({ type: types.GET_USER_TOURS_SUCCESS, payload: data });
+    } catch (error: any) {
+      dispatch({
+        type: types.GET_USER_TOURS_FAILURE,
+        payload: error.response?.data ? error.response.data : error.error,
+      });
+    }
+  };
+
+export { createTour, getTours, getTour, getToursByUser };
