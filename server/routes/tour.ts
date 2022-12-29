@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post('/', userAuth, createTour);
 router.get('/', getTours);
-router.get('/me', userAuth, getToursByUser);
 router.get('/:id', getTour);
+router.get('/me/:id', userAuth, getToursByUser);
 
 export default router;

@@ -2,6 +2,7 @@ import * as types from '../../constants/user';
 import { ActionType } from '../../types';
 
 interface User {
+  _id?: any;
   name: string;
   email: string;
   password: string;

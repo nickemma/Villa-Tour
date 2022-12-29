@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Tour } from '../../redux/reducers/tours/tour';
 
@@ -8,7 +7,6 @@ const Card: React.FC<Tour> = ({
   description,
   title,
   tags,
-  creator,
   creatorName,
   _id,
 }) => {

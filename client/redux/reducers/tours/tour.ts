@@ -2,16 +2,16 @@ import * as types from '../../constants/tour';
 import { ActionType } from '../../types';
 
 export interface Tour {
-  _id?: any,
-  title: string,
-  description: string,
-  name: string,
-  creator: string,
-  creatorName: string,
-  tags: string[],
-  imageFile: string,
-  createdAt: string,
-  likeCount: number,
+  _id?: any;
+  title: string;
+  description: string;
+  name: string;
+  creator: string;
+  creatorName: string;
+  tags: string[];
+  imageFile: string;
+  createdAt: string;
+  likeCount: number;
 }
 
 type State = {

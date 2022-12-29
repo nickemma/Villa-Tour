@@ -1,18 +1,18 @@
-import React, { FormEvent, useState, useEffect } from "react";
-import ChipInput from "material-ui-chip-input";
-import Layout from "../../components/main/Layout";
-import store, { storeType } from "../../redux/configureStore";
-import { createTour } from "../../redux/actions/tour";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import FileBase from "react-file-base64";
+import React, { FormEvent, useState, useEffect } from 'react';
+import ChipInput from 'material-ui-chip-input';
+import Layout from '../../components/main/Layout';
+import store, { storeType } from '../../redux/configureStore';
+import { createTour } from '../../redux/actions/tour';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import FileBase from 'react-file-base64';
 
 const create = () => {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
-  const [imageFile, setImageFile] = useState<string>("");
+  const [imageFile, setImageFile] = useState<string>('');
 
   const [pageLoaded, setPageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,8 +23,6 @@ const create = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log('submittting...')
-
     const formData = { title, description, tags, imageFile };
     store.dispatch(createTour(formData));
   };
@@ -32,8 +30,8 @@ const create = () => {
   useEffect(() => {
     if (pageLoaded) {
       if (!createTourStore.error && !createTourStore.loading) {
-        toast.success("Tour created successfully");
-        router.push("/");
+        toast.success('Tour created successfully');
+        router.push('/');
       }
 
       if (createTourStore.error) {
@@ -41,10 +39,10 @@ const create = () => {
       }
     }
     setLoading(createTourStore.loading);
-  }, [createTourStore])
+  }, [createTourStore]);
 
   useEffect(() => {
-    if (!currentUser.user) router.replace("/login");
+    if (!currentUser.user) router.replace('/login');
     setPageLoaded(true);
   }, []);
 
@@ -100,7 +98,7 @@ const create = () => {
               />
             </div>
             <button type="submit" className="btn_submit" disabled={loading}>
-              {loading ? "Adding Tour..." : "Add Tour"}
+              {loading ? 'Adding Tour...' : 'Add Tour'}
             </button>
           </form>
         </div>

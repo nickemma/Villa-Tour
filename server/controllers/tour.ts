@@ -13,7 +13,7 @@ export const createTour = async (req: any, res: any) => {
       creatorName: creator?.name,
       createdAt: new Date().toISOString(),
     });
-  
+
     res.status(201).json(newTour);
   } catch (err: any) {
     res.status(409).json({ message: err.message });
@@ -51,6 +51,6 @@ export const getToursByUser = async (req: any, res: any) => {
     const userTours = await Tour.find({ _creator: id });
     res.status(200).json(userTours);
   } catch (err) {
-    res.status(404).json({ message: 'Nothing went wrong' });
+    res.status(404).json({ message: 'Something went wrong' });
   }
 };

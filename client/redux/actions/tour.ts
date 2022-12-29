@@ -67,7 +67,8 @@ const getTour = (id: any) => async (dispatch: DispatchType) => {
 };
 
 const getToursByUser =
-  () => async (dispatch: DispatchType, getState: () => storeType) => {
+  (userId: any) =>
+  async (dispatch: DispatchType, getState: () => storeType) => {
     try {
       dispatch({ type: types.GET_USER_TOURS_REQUEST });
 
@@ -78,7 +79,10 @@ const getToursByUser =
           Authorization: `Bearer ${currentUser.user?.token}`,
         },
       };
-      const { data } = await axios.get(`${BACKEND_URL}/tours/me`, config);
+      const { data } = await axios.get(
+        `${BACKEND_URL}/tours/me/${userId}`,
+        config
+      );
       dispatch({ type: types.GET_USER_TOURS_SUCCESS, payload: data });
     } catch (error: any) {
       dispatch({
