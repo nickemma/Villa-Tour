@@ -15,10 +15,12 @@
 
   &_image {
     height: 10rem;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
 
     img {
       object-fit: contain;
-      height: 100%;
+      width: 100%;
     }
   }
 
@@ -52,6 +54,10 @@
     button:hover {
       transform: translateY(-0.1rem);
       box-shadow: 0 0.05rem 0.65rem $shadow;
+    }
+
+    button:disabled {
+      opacity: 0.75;
     }
   }
 }

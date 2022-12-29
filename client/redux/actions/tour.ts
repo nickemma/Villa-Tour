@@ -6,37 +6,37 @@ import { storeType } from '../configureStore';
 
 const createTour =
   (formData: any) =>
-  async (dispatch: DispatchType, getState: () => storeType) => {
-    try {
-      dispatch({
-        type: types.TOUR_CREATE_REQUEST,
-      });
+    async (dispatch: DispatchType, getState: () => storeType) => {
+      try {
+        dispatch({
+          type: types.TOUR_CREATE_REQUEST,
+        });
 
-      const currentUser = getState().currentUser;
-      const config: AxiosRequestConfig<any> = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${currentUser.user?.token}`,
-        },
-      };
+        const currentUser = getState().currentUser;
+        const config: AxiosRequestConfig<any> = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${currentUser.user?.token}`,
+          },
+        };
 
-      const { data } = await axios.post(
-        `${BACKEND_URL}/tours`,
-        formData,
-        config
-      );
+        const { data } = await axios.post(
+          `${BACKEND_URL}/tours`,
+          formData,
+          config
+        );
 
-      dispatch({
-        type: types.TOUR_CREATE_SUCCESS,
-        payload: data.tours,
-      });
-    } catch (error: any) {
-      dispatch({
-        type: types.TOUR_CREATE_FAILURE,
-        payload: error.response?.data ? error.response.data : error.error,
-      });
-    }
-  };
+        dispatch({
+          type: types.TOUR_CREATE_SUCCESS,
+          payload: data.tours,
+        });
+      } catch (error: any) {
+        dispatch({
+          type: types.TOUR_CREATE_FAILURE,
+          payload: error.response?.data ? error.response.data : error.error,
+        });
+      }
+    };
 
 const getTours = () => async (dispatch: DispatchType) => {
   try {
@@ -66,31 +66,54 @@ const getTour = (id: any) => async (dispatch: DispatchType) => {
   }
 };
 
-const getToursByUser =
-  () =>
-  async (dispatch: DispatchType, getState: () => storeType) => {
-    try {
-      dispatch({ type: types.GET_USER_TOURS_REQUEST });
+const getToursByUser = () => async (dispatch: DispatchType, getState: () => storeType) => {
+  try {
+    dispatch({ type: types.GET_USER_TOURS_REQUEST });
 
-      const currentUser = getState().currentUser;
-      const config: AxiosRequestConfig<any> = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${currentUser.user?.token}`,
-        },
-      };
+    const currentUser = getState().currentUser;
+    const config: AxiosRequestConfig<any> = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${currentUser.user?.token}`,
+      },
+    };
 
-      const { data } = await axios.get(
-        `${BACKEND_URL}/tours/me/`,
-        config
-      );
-      dispatch({ type: types.GET_USER_TOURS_SUCCESS, payload: data });
-    } catch (error: any) {
-      dispatch({
-        type: types.GET_USER_TOURS_FAILURE,
-        payload: error.response?.data ? error.response.data : error.error,
-      });
-    }
-  };
+    const { data } = await axios.get(
+      `${BACKEND_URL}/tours/me`,
+      config
+    );
+    dispatch({ type: types.GET_USER_TOURS_SUCCESS, payload: data });
+  } catch (error: any) {
+    dispatch({
+      type: types.GET_USER_TOURS_FAILURE,
+      payload: error.response?.data ? error.response.data : error.error,
+    });
+  }
+};
 
-export { createTour, getTours, getTour, getToursByUser };
+const deleteTour = (tourId: string) => async (dispatch: DispatchType, getState: () => storeType) => {
+  try {
+    dispatch({ type: types.DELETE_TOUR_REQUEST });
+
+    const currentUser = getState().currentUser;
+    const config: AxiosRequestConfig<any> = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${currentUser.user?.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(
+      `${BACKEND_URL}/tours/${tourId}`,
+      config
+    );
+    dispatch({ type: types.DELETE_TOUR_SUCCESS, payload: data });
+  } catch (error: any) {
+    dispatch({
+      type: types.DELETE_TOUR_FAILURE,
+      payload: error.response?.data ? error.response.data : error.error,
+    });
+  }
+}
+
+export { createTour, getTours, getTour, getToursByUser, deleteTour };

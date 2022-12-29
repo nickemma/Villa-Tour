@@ -15,7 +15,7 @@ router.post('/', userAuth, createTour);
 router.get('/', getTours);
 router.get('/me', userAuth, getToursByUser);
 router.get('/:id', getTour);
-router.delete('/:id', deleteTour);
+router.delete('/:id', userAuth, deleteTour);
 router.put('/:id', updateTour);
 
 export default router;
