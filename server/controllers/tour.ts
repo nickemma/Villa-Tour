@@ -47,11 +47,10 @@ export const getToursByUser = async (req: any, res: any) => {
     if (!userExists) {
       return res.status(404).json({ message: 'User does not exist' });
     }
-    console.log(id);
     const userTours = await Tour.find({ _creator: id });
     res.status(200).json(userTours);
   } catch (err) {
-    res.status(404).json({ message: 'Something went wrong' });
+    res.status(400).json({ message: 'Something went wrong' });
   }
 };
 

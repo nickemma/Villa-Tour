@@ -5,13 +5,10 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { getToursByUser } from "../redux/actions/tour";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import Link from "next/link";
-import Image from "next/image";
 
 const Dashboard: React.FC = () => {
   const currentUser = useSelector((store: storeType) => store.currentUser);
   const tours = useSelector((store: storeType) => store.tourData.userTours);
-  const userId = currentUser.user?.user._id;
   const router = useRouter();
 
   useEffect(() => {
@@ -21,10 +18,8 @@ const Dashboard: React.FC = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (userId) {
-      store.dispatch(getToursByUser(userId));
-    }
-  }, [userId]);
+    store.dispatch(getToursByUser());
+  }, []);
 
   const excerpt = (text: string) => {
     if (text.length > 35) {
