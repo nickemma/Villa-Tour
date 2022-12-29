@@ -1,4 +1,5 @@
-import * as types from '../../constants/tour';
+import * as tourTypes from '../../constants/tour';
+import * as userTypes from '../../constants/user';
 import { ActionType } from '../../types';
 
 export interface Tour {
@@ -18,11 +19,13 @@ type State = {
   loading: boolean;
   error: null | { message: string };
   tours: Tour[];
+  userTours: Tour[];
   tour: Tour | null;
 };
 const initialState = {
   loading: false,
   error: null,
+  userTours: [],
   tours: [],
   tour: null,
 };
@@ -33,29 +36,33 @@ const tourReducer = (
 ): State => {
   const { type, payload } = action;
   switch (type) {
-    case types.TOUR_CREATE_REQUEST:
+    case userTypes.USER_LOGIN_SUCCESS:
+      return { ...state, userTours: [] };
+    case userTypes.USER_REGISTER_SUCCESS:
+      return { ...state, userTours: [] };
+    case tourTypes.TOUR_CREATE_REQUEST:
       return { ...state, loading: true };
-    case types.TOUR_CREATE_SUCCESS:
+    case tourTypes.TOUR_CREATE_SUCCESS:
       return { ...state, loading: false, error: null, tour: payload };
-    case types.TOUR_CREATE_FAILURE:
+    case tourTypes.TOUR_CREATE_FAILURE:
       return { ...state, loading: false, error: payload };
-    case types.GET_TOURS_REQUEST:
+    case tourTypes.GET_TOURS_REQUEST:
       return { ...state, loading: true };
-    case types.GET_TOURS_SUCCESS:
+    case tourTypes.GET_TOURS_SUCCESS:
       return { ...state, loading: false, error: null, tours: payload };
-    case types.GET_TOURS_FAILURE:
+    case tourTypes.GET_TOURS_FAILURE:
       return { ...state, loading: false, error: payload };
-    case types.GET_TOUR_REQUEST:
+    case tourTypes.GET_TOUR_REQUEST:
       return { ...state, loading: true };
-    case types.GET_TOUR_SUCCESS:
+    case tourTypes.GET_TOUR_SUCCESS:
       return { ...state, loading: false, error: null, tour: payload };
-    case types.GET_TOUR_FAILURE:
+    case tourTypes.GET_TOUR_FAILURE:
       return { ...state, loading: false, error: payload };
-    case types.GET_USER_TOURS_REQUEST:
+    case tourTypes.GET_USER_TOURS_REQUEST:
       return { ...state, loading: true };
-    case types.GET_USER_TOURS_SUCCESS:
-      return { ...state, loading: false, error: null, tours: payload };
-    case types.GET_USER_TOURS_FAILURE:
+    case tourTypes.GET_USER_TOURS_SUCCESS:
+      return { ...state, loading: false, error: null, userTours: payload };
+    case tourTypes.GET_USER_TOURS_FAILURE:
       return { ...state, loading: false, error: payload };
     default:
       return state;

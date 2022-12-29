@@ -1,0 +1,57 @@
+@use '../abstracts' as *;
+
+.user_tours {
+  padding: 3rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.user_tour {
+  display: flex;
+  box-shadow: 0 0 0 0.1rem $line;
+  border-radius: 0.25rem;
+  background-color: $bg-secondary;
+
+  &_image {
+    height: 10rem;
+
+    img {
+      object-fit: contain;
+      height: 100%;
+    }
+  }
+
+  &_content {
+    padding: 1rem;
+    flex: 1;
+
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  &_options {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+
+    button {
+      cursor: pointer;
+      border: none;
+      padding: 0.35rem;
+      background: $accent;
+      border-radius: 0.15rem;
+      color: $bg-secondary;
+      box-shadow: 0 0.15rem 0.25rem $shadow;
+
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    button:hover {
+      transform: translateY(-0.1rem);
+      box-shadow: 0 0.05rem 0.65rem $shadow;
+    }
+  }
+}
