@@ -65,7 +65,7 @@ const tourReducer = (
       return { ...state, loading: false, error: null, tour: payload };
     case tourTypes.GET_TOUR_FAILURE:
       return { ...state, loading: false, error: payload };
-    
+
     // Retrieve tours fopr specific user
     case tourTypes.GET_USER_TOURS_REQUEST:
       return { ...state, loading: true };
@@ -78,11 +78,17 @@ const tourReducer = (
     case tourTypes.DELETE_TOUR_REQUEST:
       return { ...state, loading: true };
     case tourTypes.DELETE_TOUR_SUCCESS:
-      const tours: Tour[] = state.tours.filter(tour => tour._id !== payload.id);
-      const userTours: Tour[] = state.userTours.filter(tour => tour._id !== payload.id);
+      const tours: Tour[] = state.tours.filter(
+        (tour) => tour._id !== payload.id
+      );
+      const userTours: Tour[] = state.userTours.filter(
+        (tour) => tour._id !== payload.id
+      );
       return { ...state, loading: false, error: null, tours, userTours };
     case tourTypes.DELETE_TOUR_FAILURE:
       return { ...state, loading: false, error: payload };
+
+    // Update tour request
     default:
       return state;
   }

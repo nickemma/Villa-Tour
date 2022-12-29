@@ -60,23 +60,32 @@ export const deleteTour = async (req: any, res: any) => {
   try {
     const tour = await Tour.findById(id);
     await tour?.delete();
-    res.status(200).json({ message: `Tour: ${tour?.name} deleted successfully`, id: tour?.id });
+    res
+      .status(200)
+      .json({
+        message: `Tour: ${tour?.name} deleted successfully`,
+        id: tour?.id,
+      });
   } catch (err) {
     res.status(404).json({ message: 'Something went wrong' });
   }
-  // 63ab503a0d0cc02338aa4bae
-  // 63ab503a0d0cc02338aa4bae
 };
 
 export const updateTour = async (req: any, res: any) => {
   const { id } = req.params;
-  const { title, descrip } = req.body;
+  const { title, description, creator, imageFile, tags } = req.body;
+
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.send(404).json({ message: 'Something went wrong' });
+    const tour = await Tour.findById(id);
+    if (!tour) {
+      return res.status(404).json({ message: 'Tour does not exist' });
     }
-    await Tour.findByIdAndRemove(id);
-    res.send(200).json({ message: 'Tour Updated successfully' });
+    const updatedTour = await Tour.findByIdAndUpdate(
+      id,
+      { title, description, creator, imageFile, tags },
+      { new: true }
+    );
+    res.status(200).json(updatedTour);
   } catch (err) {
     res.status(404).json({ message: 'Something went wrong' });
   }

@@ -13,9 +13,9 @@ const router = express.Router();
 
 router.post('/', userAuth, createTour);
 router.get('/', getTours);
-router.get('/me', userAuth, getToursByUser);
+router.get('/userTour', userAuth, getToursByUser);
 router.get('/:id', getTour);
 router.delete('/:id', userAuth, deleteTour);
-router.put('/:id', updateTour);
+router.put('/:id', userAuth, updateTour);
 
 export default router;
