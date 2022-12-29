@@ -54,3 +54,30 @@ export const getToursByUser = async (req: any, res: any) => {
     res.status(404).json({ message: 'Something went wrong' });
   }
 };
+
+export const deleteTour = async (req: any, res: any) => {
+  const { id } = req.params;
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.send(404).json({ message: 'Something went wrong' });
+    }
+    await Tour.findByIdAndRemove(id);
+    res.send(200).json({ message: 'Tour deleted successfully' });
+  } catch (err) {
+    res.status(404).json({ message: 'Something went wrong' });
+  }
+};
+
+export const updateTour = async (req: any, res: any) => {
+  const { id } = req.params;
+  const { title, descrip } = req.body;
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.send(404).json({ message: 'Something went wrong' });
+    }
+    await Tour.findByIdAndRemove(id);
+    res.send(200).json({ message: 'Tour Updated successfully' });
+  } catch (err) {
+    res.status(404).json({ message: 'Something went wrong' });
+  }
+};
