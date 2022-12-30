@@ -89,6 +89,31 @@ const tourReducer = (
       return { ...state, loading: false, error: payload };
 
     // Update tour request
+    case tourTypes.UPDATE_TOUR_REQUEST:
+      return { ...state, loading: true };
+    case tourTypes.UPDATE_TOUR_SUCCESS:
+      const updatedTours: Tour[] = state.tours.map((tour) => {
+        if (tour._id === payload.id) {
+          tour = payload.tour;
+        }
+        return tour;
+      });
+      const updatedUserTours: Tour[] = state.userTours.map((tour) => {
+        if (tour._id === payload.id) {
+          tour = payload.tour;
+        }
+        return tour;
+      });
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        tours: updatedTours,
+        userTours: updatedUserTours,
+      };
+    case tourTypes.UPDATE_TOUR_FAILURE:
+      return { ...state, loading: false, error: payload };
+
     default:
       return state;
   }

@@ -1,9 +1,10 @@
-import { Provider } from "react-redux";
-import store from "../redux/configureStore";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
-import "../scss/index.scss";
-import type { AppProps } from "next/app";
+import { Provider } from 'react-redux';
+import store from '../redux/configureStore';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+import '../scss/index.scss';
+import type { AppProps } from 'next/app';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
