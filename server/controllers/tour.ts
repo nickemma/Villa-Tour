@@ -60,12 +60,10 @@ export const deleteTour = async (req: any, res: any) => {
   try {
     const tour = await Tour.findById(id);
     await tour?.delete();
-    res
-      .status(200)
-      .json({
-        message: `Tour: ${tour?.name} deleted successfully`,
-        id: tour?.id,
-      });
+    res.status(200).json({
+      message: `Tour: ${tour?.name} deleted successfully`,
+      id: tour?.id,
+    });
   } catch (err) {
     res.status(404).json({ message: 'Something went wrong' });
   }
