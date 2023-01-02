@@ -1,3 +1,3 @@
-const BACKEND_URL = 'http://localhost:4000';
+const BACKEND_URL = 'https://villa-tour-api.vercel.app';
 
 export default BACKEND_URL;

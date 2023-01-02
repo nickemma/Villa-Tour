@@ -6,3 +6,7 @@ $text-primary: rgb(17, 17, 17);
 $text-secondary: rgb(41, 41, 41);
 $line: rgb(223, 210, 200);
 $shadow: rgba(59, 29, 7, 0.213);
+
+:root {
+  --accent: $accent;
+}

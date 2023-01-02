@@ -91,13 +91,17 @@ const Register = () => {
             />
           </div>
           <div className="image">
-            <label htmlFor="avatar" className='form_label'>Profile Image</label>
+            <label htmlFor="avatar" className="form_label">
+              Profile Image
+            </label>
             <FileBase
               id="avatar"
               type="file"
               multiple={false}
               value={imageFile}
-              onDone={({ base64 }: any) => setImageFile(base64 ? base64 : imageFile)}
+              onDone={({ base64 }: any) =>
+                setImageFile(base64 ? base64 : imageFile)
+              }
             />
           </div>
           <div>
