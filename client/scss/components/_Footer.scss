@@ -1,22 +1,26 @@
 @use '../abstracts' as *;
 
 .footer {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  padding: 1rem 2rem;
+  background-color: $accent;
+
 
   .credit {
     text-align: center;
-    margin-top: 3rem;
 
     p {
-      font-size: 1.5rem;
-      background-color: $bg-secondary;
-      color: $text-secondary;
+      color: $bg-primary;
       font-weight: 400;
 
-      span {
-        font-style: italic;
-        color: $accent;
+      a {
+        color: $bg-secondary;
         font-weight: bold;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }

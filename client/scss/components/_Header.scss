@@ -1,4 +1,4 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 .header {
   padding: 1rem 2.5rem;
@@ -66,6 +66,10 @@
       background: none;
       z-index: 1;
 
+      .mobile_nav_links {
+        display: none;
+      }
+
       .avatar {
         aspect-ratio: 1;
         width: 2.25rem;
@@ -103,6 +107,10 @@
         opacity: 0;
         transition: opacity 0.25s ease 0.5s, top 0.25s ease 0.5s,
           visibility 0.15s 0.5s;
+         
+        h4 span {
+          color: $accent;
+        }
 
         button {
           padding: 0.7rem;
@@ -141,5 +149,41 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav_links {
+    display: none !important;
+  }
+
+  .mobile_nav_links {
+    display: flex !important;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+
+    * {
+      font-size: 1.1rem;
+    }
+
+    li {
+      border-radius: 0.15rem;
+      padding: 0.35rem;
+      a {
+        color: $text-primary;
+      }
+    }
+
+    li.active {
+      background-color: transparentize($color: $accent, $amount: 0.9);
+
+      a {
+        color: $accent;
+      }
+    }
+  }
+
+  .nav_dropdown {
+    margin-left: auto !important;
   }
 }

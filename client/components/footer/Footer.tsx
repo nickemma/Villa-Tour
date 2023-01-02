@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => {
   const date = new Date();
@@ -8,8 +8,23 @@ const Footer = () => {
     <footer className="footer">
       <div className="credit">
         <p>
-          {year} - developed by <span>Techie Emma</span> &{' '}
-          <span>Okoye Charles</span> | all right reserved
+          Copyright {year} - developed by{" "}
+          <a
+            href="https://techieemma.tech"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Techie Emma
+          </a>{" "}
+          &{" "}
+          <a
+            href="https://okoyecharles.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Okoye Charles
+          </a>{" "}
+          | All right reserved
         </p>
       </div>
     </footer>

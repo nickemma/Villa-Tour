@@ -65,6 +65,7 @@ const Dashboard: React.FC = () => {
     <>
       <Layout>
         <section className="user_tours">
+          <h2>Your tours</h2>
           {tours.userTours.map((tour) => (
             <article key={tour._id} className="user_tour">
               <div className="user_tour_image">

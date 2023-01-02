@@ -1,10 +1,11 @@
 @use '../abstracts' as *;
 
 .user_tours {
-  padding: 3rem;
+  padding: 2rem;
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  min-height: calc(100vh - 169px);
 }
 
 .user_tour {
@@ -58,6 +59,26 @@
 
     button:disabled {
       opacity: 0.75;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .user_tours {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .user_tour {
+    align-self: center;
+    flex-direction: column;
+    width: min(100%, 25rem);
+    border-radius: 0.25rem;
+    overflow: hidden;
+
+    &_image {
+      height: auto;
     }
   }
 }
