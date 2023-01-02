@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Layout from '../../components/main/Layout';
 import store, { storeType } from '../../redux/configureStore';
-import { getRelatedTours, getTour } from '../../redux/actions/tour';
+import { getTour } from '../../redux/actions/tour';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import { BsCalendarDate, BsFillArrowLeftCircleFill } from 'react-icons/bs';
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import Link from 'next/link';
 
 const singleTour: React.FC = () => {
@@ -32,17 +32,15 @@ const singleTour: React.FC = () => {
             <Link href="/" className="go_back">
               <BsFillArrowLeftCircleFill />
             </Link>
-            <span>Created by: {tour?.creator}</span>
+            <span>
+              Created by {tour?.creatorName}{' '} {moment(tour?.createdAt).fromNow()}
+            </span>
             <div className="tags_content">
-              <span className="tags">
-                {tour &&
-                  tour?.tags &&
-                  tour?.tags.map((item: any) => `#${item}`)}
-              </span>
-            </div>
-            <div className="date_content">
-              <BsCalendarDate />
-              <small>{moment(tour?.createdAt).fromNow()}</small>
+              <ul className="tags">
+                {tour?.tags.map((item: any) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
             </div>
             <div className="text_content">
               <p>{tour?.description}</p>

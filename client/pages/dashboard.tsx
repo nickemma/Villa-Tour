@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { deleteTour, getToursByUser } from '../redux/actions/tour';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import TourEdit from '../components/popup/TourEdit';
 
 const Dashboard: React.FC = () => {
   const currentUser = useSelector((store: storeType) => store.currentUser);
@@ -96,7 +95,6 @@ const Dashboard: React.FC = () => {
           ))}
         </section>
       </Layout>
-      <TourEdit show={showPopup} id={tourId} handleClose={handleClose} />
     </>
   );
 };

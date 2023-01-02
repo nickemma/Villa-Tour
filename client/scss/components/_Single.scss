@@ -42,35 +42,24 @@
       }
 
       span {
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: 0.85rem;
+        opacity: 0.75;
+        display: block;
+        margin-bottom: 1rem;
       }
 
       .tags_content {
         .tags {
-          gap: 2rem;
-        }
-      }
-      .date_content {
-        font-size: 1.5rem;
-        margin: 1rem 0;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
+          gap: 1rem;
+          display: flex;
 
-        svg {
-          color: $accent;
-          transition: 0.5s ease-in-out;
-
-          &:hover {
-            transform: translateY(-10px);
+          li {
+            padding: 0.25em 1em;
+            border-radius: 0.25rem;
+            background-color: transparentize($color: $accent, $amount: 0.9);
+            color: $accent;
+            font-size: 0.9rem;
           }
-        }
-
-        small {
-          margin-left: 0.25rem;
-          font-weight: 600;
-          font-style: italic;
         }
       }
       .text_content {
