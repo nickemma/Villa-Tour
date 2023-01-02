@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   register: registerReducer,
   tourData: tourReducer,
-  currentUser: persistedReducer
+  currentUser: persistedReducer,
 });
 
 export default rootReducer;

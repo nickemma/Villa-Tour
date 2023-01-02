@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Layout from '../../components/main/Layout';
 import store, { storeType } from '../../redux/configureStore';
-import { getTour } from '../../redux/actions/tour';
+import { getRelatedTours, getTour } from '../../redux/actions/tour';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { BsCalendarDate, BsFillArrowLeftCircleFill } from 'react-icons/bs';
