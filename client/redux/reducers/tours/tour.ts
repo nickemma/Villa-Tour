@@ -113,14 +113,6 @@ const tourReducer = (
       };
     case tourTypes.UPDATE_TOUR_FAILURE:
       return { ...state, loading: false, error: payload };
-
-    // Get related tours
-    case tourTypes.GET_RELATED_TOURS_REQUEST:
-      return { ...state, loading: true };
-    case tourTypes.GET_RELATED_TOURS_SUCCESS:
-      return { ...state, loading: false, error: null, relatedTours: payload };
-    case tourTypes.GET_RELATED_TOURS_FAILURE:
-      return { ...state, loading: false, error: payload };
     default:
       return state;
   }

@@ -8,7 +8,7 @@ import moment from 'moment';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import Link from 'next/link';
 
-const singleTour: React.FC = () => {
+const SingleTour: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -33,12 +33,12 @@ const singleTour: React.FC = () => {
               <BsFillArrowLeftCircleFill />
             </Link>
             <span>
-              Created by {tour?.creatorName}{' '} {moment(tour?.createdAt).fromNow()}
+              Created by {tour?.creatorName} {moment(tour?.createdAt).fromNow()}
             </span>
             <div className="tags_content">
               <ul className="tags">
                 {tour?.tags.map((item: any) => (
-                  <li>{item}</li>
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
@@ -52,4 +52,4 @@ const singleTour: React.FC = () => {
   );
 };
 
-export default singleTour;
+export default SingleTour;

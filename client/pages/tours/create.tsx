@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import FileBase from 'react-file-base64';
 
-const create = () => {
+const Create = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
@@ -107,4 +107,4 @@ const create = () => {
   );
 };
 
-export default create;
+export default Create;
